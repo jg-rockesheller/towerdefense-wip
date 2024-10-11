@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dty5siu24vs68"]
+
+[ext_resource type="Texture2D" uid="uid://ch3fkhiun3sup" path="res://prototyping/concentric_squares.png" id="1_tlmt3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7e7if"]
+size = Vector2(16, 16)
+
+[node name="Tower Prototype" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("1_tlmt3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.85, 0.85)
+shape = SubResource("RectangleShape2D_7e7if")
