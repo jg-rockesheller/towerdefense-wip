@@ -1,3 +1,14 @@
 = Prototyping
 
 This is for testing out features before adding them to the game.
+Also testing out algorithms in Python if need be.
+
+.`link:prototype.tscn[]`:
+----
+[gd_scene format=3 uid="uid://bbqxntmukvrdr"]
+
+[node name="Prototype" type="Node2D"]
+----
+
+.Links:
+* ./path-gen.adoc[Path Generator Prototype]

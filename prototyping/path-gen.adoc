@@ -1,0 +1,10 @@
+= Path Generator Prototype 
+
+To generate a path, we will generate a maze then a solution to the maze, with that solution being the path.
+
+.`link:gen-path.py[]`:
+[arachne, python]
+----
+print("Hello, world!")
+print("TODO")
+----
