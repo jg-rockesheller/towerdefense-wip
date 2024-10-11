@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dty5siu24vs68"]
+[gd_scene load_steps=5 format=3 uid="uid://dty5siu24vs68"]
 
+[ext_resource type="Script" path="res://tower_prototype.gd" id="1_nytwi"]
 [ext_resource type="Texture2D" uid="uid://ch3fkhiun3sup" path="res://prototyping/concentric_squares.png" id="1_tlmt3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7e7if"]
 size = Vector2(16, 16)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jdonn"]
+radius = 36.0139
+
 [node name="Tower Prototype" type="Area2D"]
+script = ExtResource("1_nytwi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -15,3 +20,8 @@ texture = ExtResource("1_tlmt3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.85, 0.85)
 shape = SubResource("RectangleShape2D_7e7if")
+
+[node name="Detection Radius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection Radius"]
+shape = SubResource("CircleShape2D_jdonn")

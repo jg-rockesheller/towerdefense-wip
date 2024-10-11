@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1hxwu0uoixex"]
+
+[ext_resource type="Texture2D" uid="uid://ch3fkhiun3sup" path="res://prototyping/concentric_squares.png" id="1_lured"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ok8l7"]
+size = Vector2(6, 8)
+
+[node name="Bullet" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+scale = Vector2(0.3, 0.5)
+texture = ExtResource("1_lured")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ok8l7")
