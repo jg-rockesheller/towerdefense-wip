@@ -6,10 +6,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0q8te"]
 size = Vector2(16, 16)
 
-[node name="Enemy Prototype" type="PathFollow2D" groups=["enemies"]]
+[node name="Enemy Prototype" type="PathFollow2D" groups=["enemy"]]
 script = ExtResource("1_j74or")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
 self_modulate = Color(1, 0, 0, 1)
