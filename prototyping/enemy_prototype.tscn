@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0q8te"]
 size = Vector2(16, 16)
 
-[node name="Enemy Prototype" type="PathFollow2D"]
+[node name="Enemy Prototype" type="PathFollow2D" groups=["enemies"]]
 script = ExtResource("1_j74or")
 
 [node name="Area2D" type="Area2D" parent="."]
