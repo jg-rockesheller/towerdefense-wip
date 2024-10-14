@@ -20,4 +20,8 @@ func create(inp_node):
 	path_node = inp_node
 
 
+func explode():
+	queue_free()
+
+
 # ex: set noexpandtab :
