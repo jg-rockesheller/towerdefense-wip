@@ -1,3 +1,0 @@
-= Prototyping
-
-This is for testing out features before adding them to the game.
