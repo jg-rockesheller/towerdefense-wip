@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dty5siu24vs68"]
 
-[ext_resource type="Script" path="res://tower_prototype.gd" id="1_nytwi"]
+[ext_resource type="Script" path="res://prototyping/tower_prototype.gd" id="1_nytwi"]
 [ext_resource type="Texture2D" uid="uid://ch3fkhiun3sup" path="res://prototyping/concentric_squares.png" id="1_tlmt3"]
 [ext_resource type="PackedScene" uid="uid://c1hxwu0uoixex" path="res://prototyping/bullet.tscn" id="2_he5nw"]
 
