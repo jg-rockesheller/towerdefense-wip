@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://bbqxntmukvrdr"]
+[gd_scene load_steps=10 format=4 uid="uid://bbqxntmukvrdr"]
 
 [ext_resource type="Texture2D" uid="uid://ch3fkhiun3sup" path="res://prototyping/concentric_squares.png" id="1_hhnjt"]
 [ext_resource type="Script" path="res://prototyping/spawner_and_path.gd" id="2_7yxnn"]
 [ext_resource type="PackedScene" uid="uid://bne54ib2pp8gy" path="res://prototyping/enemy_prototype.tscn" id="3_7a5hl"]
 [ext_resource type="PackedScene" uid="uid://c1hxwu0uoixex" path="res://prototyping/bullet.tscn" id="3_stuv1"]
+[ext_resource type="PackedScene" uid="uid://dty5siu24vs68" path="res://tower_prototype.tscn" id="5_iyx30"]
 
 [sub_resource type="GDScript" id="GDScript_2v6lp"]
 script/source = "extends Node2D
@@ -51,12 +52,15 @@ script = ExtResource("2_7yxnn")
 wait_time = 5.0
 autostart = true
 
-[node name="Enemy Prototype" parent="Enemy Spawner and Path" instance=ExtResource("3_7a5hl")]
+[node name="Enemy Prototype" parent="Enemy Spawner and Path" groups=["enemies"] instance=ExtResource("3_7a5hl")]
 position = Vector2(-203, 56)
 rotation = -0.00680262
 
 [node name="Bullet" parent="." node_paths=PackedStringArray("enemy_prototype") instance=ExtResource("3_stuv1")]
 position = Vector2(-56, -18)
 enemy_prototype = NodePath("../Enemy Spawner and Path/Enemy Prototype")
+
+[node name="Tower Prototype" parent="." instance=ExtResource("5_iyx30")]
+position = Vector2(-29, -12)
 
 [connection signal="timeout" from="Enemy Spawner and Path/SpawnerTimer" to="Enemy Spawner and Path" method="_on_spawner_timer_timeout"]
