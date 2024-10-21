@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://prototyping/spawner_and_path.gd" id="2_7yxnn"]
 [ext_resource type="PackedScene" uid="uid://bne54ib2pp8gy" path="res://prototyping/enemy_prototype.tscn" id="3_7a5hl"]
 [ext_resource type="PackedScene" uid="uid://c1hxwu0uoixex" path="res://prototyping/bullet.tscn" id="3_stuv1"]
-[ext_resource type="PackedScene" uid="uid://dty5siu24vs68" path="res://tower_prototype.tscn" id="5_iyx30"]
+[ext_resource type="PackedScene" uid="uid://dty5siu24vs68" path="res://prototyping/tower_prototype.tscn" id="5_iyx30"]
 
 [sub_resource type="GDScript" id="GDScript_2v6lp"]
 script/source = "extends Node2D
