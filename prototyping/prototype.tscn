@@ -49,7 +49,6 @@ curve = SubResource("Curve2D_wa4o5")
 script = ExtResource("2_7yxnn")
 
 [node name="SpawnerTimer" type="Timer" parent="Enemy Spawner and Path"]
-wait_time = 5.0
 autostart = true
 
 [node name="Enemy Prototype" parent="Enemy Spawner and Path" groups=["enemies"] instance=ExtResource("3_7a5hl")]

@@ -13,6 +13,11 @@ func _ready() -> void:
 func _process(_delta: float):
 	position += position.direction_to(enemy_prototype.position) * bullet_speed
 
+func create(tower_pos, enemy: Node2D):
+	enemy_prototype = enemy
+	position = tower_pos
+
+
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):
 		enemy_prototype.explode()
