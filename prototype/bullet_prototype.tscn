@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://57ydutrh4r45"]
+
+[ext_resource type="Texture2D" uid="uid://qd83gbjc676n" path="res://prototype/concentric_squares.png" id="1_kei3s"]
+[ext_resource type="Script" path="res://prototype/bullet_prototype.gd" id="1_wlxhd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06bci"]
+size = Vector2(12, 8)
+
+[node name="Bullet Prototype" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_wlxhd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+scale = Vector2(0.7, 0.5)
+texture = ExtResource("1_kei3s")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_06bci")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

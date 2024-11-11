@@ -1,7 +1,7 @@
 extends PathFollow2D
 
 
-@export var speed = 100
+@export var speed = 75
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -10,7 +10,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if progress_ratio == 1:
-		path_node.damage(10)
 		queue_free()
 	progress += speed * delta
 
@@ -21,7 +20,8 @@ func create(inp_node):
 
 
 func explode():
-	queue_free()
+	print("clear")
+	# queue_free()
 
 
 # ex: set noexpandtab :

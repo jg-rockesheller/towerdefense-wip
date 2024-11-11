@@ -13,7 +13,6 @@ func _process(_delta: float) -> void:
 
 var enemy_scene = preload("res://prototyping/enemy_prototype.tscn")
 func _on_spawner_timer_timeout() -> void:
-	print("spawning")
 	var enemy = enemy_scene.instantiate()
 	enemy.create(self)
 	add_child(enemy)

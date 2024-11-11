@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=4 uid="uid://cmp6shwj5ssbq"]
+
+[ext_resource type="Script" path="res://prototype/prototype.gd" id="1_qrro2"]
+[ext_resource type="Texture2D" uid="uid://qd83gbjc676n" path="res://prototype/concentric_squares.png" id="1_vxh23"]
+[ext_resource type="Script" path="res://prototype/path_spawner.gd" id="3_ywb5p"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_78xry"]
+texture = ExtResource("1_vxh23")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_4vb1q"]
+sources/0 = SubResource("TileSetAtlasSource_78xry")
+
+[sub_resource type="Curve2D" id="Curve2D_c6anf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -233, -8, 0, 0, 0, 0, 88, -8, 0, 0, 0, 0, 88, -72, 0, 0, 0, 0, 24, -72, 0, 0, 0, 0, 24, 55, 0, 0, 0, 0, 231, 56)
+}
+point_count = 6
+
+[node name="Prototype" type="Node2D"]
+script = ExtResource("1_qrro2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray("AADy////AAAAAAAAAAD+////AAAAAAAAAAD9////AAAAAAAAAAD8////AAAAAAAAAAD7////AAAAAAAAAAD6////AAAAAAAAAAD5////AAAAAAAAAAD4////AAAAAAAAAAD3////AAAAAAAAAAD2////AAAAAAAAAAD1////AAAAAAAAAAD0////AAAAAAAAAADz////AAAAAAAAAAD/////AAAAAAAAAAAAAP//AAAAAAAAAAABAP//AAAAAAAAAAACAP//AAAAAAAAAAADAP//AAAAAAAAAAAEAP//AAAAAAAAAAAFAP//AAAAAAAAAAAFAP7/AAAAAAAAAAAFAP3/AAAAAAAAAAAFAPz/AAAAAAAAAAAFAPv/AAAAAAAAAAAEAPv/AAAAAAAAAAADAPv/AAAAAAAAAAACAPv/AAAAAAAAAAABAPv/AAAAAAAAAAABAAMAAAAAAAAAAAABAPz/AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAANAAMAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_4vb1q")
+
+[node name="PathSpawner" type="Path2D" parent="."]
+curve = SubResource("Curve2D_c6anf")
+script = ExtResource("3_ywb5p")
+
+[node name="Timer" type="Timer" parent="PathSpawner"]
+autostart = true
+
+[connection signal="timeout" from="PathSpawner/Timer" to="PathSpawner" method="_on_timer_timeout"]
