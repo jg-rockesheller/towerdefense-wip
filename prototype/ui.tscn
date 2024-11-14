@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnse1w3ouff6c"]
+
+[ext_resource type="Texture2D" uid="uid://qd83gbjc676n" path="res://prototype/concentric_squares.png" id="1_mavon"]
+
+[node name="UI" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-366.5, -0.499974)
+scale = Vector2(14.0625, 33.6875)
+texture = ExtResource("1_mavon")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://cmp6shwj5ssbq"]
+[gd_scene load_steps=8 format=4 uid="uid://cmp6shwj5ssbq"]
 
 [ext_resource type="Script" path="res://prototype/prototype.gd" id="1_qrro2"]
 [ext_resource type="Texture2D" uid="uid://qd83gbjc676n" path="res://prototype/concentric_squares.png" id="1_vxh23"]
 [ext_resource type="Script" path="res://prototype/path_spawner.gd" id="3_ywb5p"]
+[ext_resource type="PackedScene" uid="uid://dnse1w3ouff6c" path="res://prototype/ui.tscn" id="4_py0bd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_78xry"]
 texture = ExtResource("1_vxh23")
@@ -34,5 +35,7 @@ script = ExtResource("3_ywb5p")
 
 [node name="Timer" type="Timer" parent="PathSpawner"]
 autostart = true
+
+[node name="UI" parent="." instance=ExtResource("4_py0bd")]
 
 [connection signal="timeout" from="PathSpawner/Timer" to="PathSpawner" method="_on_timer_timeout"]
