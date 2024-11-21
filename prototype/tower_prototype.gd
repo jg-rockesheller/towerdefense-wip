@@ -8,6 +8,12 @@ var enemyQueue = []
 var curEnemy
 
 
+func create(clickPos: Vector2) -> void:
+	self.position = clickPos
+	print(self.position)
+	print(get_parent())
+
+
 func selectEnemy() -> void:
 	if len(enemyQueue) == 0:
 		curEnemy = null
