@@ -738,6 +738,7 @@ tile_size = Vector2i(14, 7)
 sources/1 = SubResource("TileSetAtlasSource_4mbpd")
 
 [node name="UI" type="Node2D"]
+z_index = 5
 script = ExtResource("1_o4jko")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
