@@ -51,3 +51,12 @@ func _ready() -> void:
 		print(point)
 		$Line2D.add_point(point)
 		$Path2D.curve.add_point(point)
+
+	for i in pathVectors.size() - 1:
+		# taken from https://kidscancode.org/godot_recipes/4.x/2d/line_collision/
+		var new_shape = CollisionShape2D.new()
+		$Area2D.add_child(new_shape)
+		var segment = SegmentShape2D.new()
+		segment.a = pathVectors[i]
+		segment.b = pathVectors[i + 1]
+		new_shape.shape = segment
