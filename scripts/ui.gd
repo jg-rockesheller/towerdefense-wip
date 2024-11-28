@@ -1,7 +1,7 @@
 extends Node2D
 
 var placeToggle = false
-@onready var towerScene = preload("res://prototype/tower_prototype.tscn")
+@onready var towerScene = preload("res://scenes/tower.tscn")
 
 func _input(event: InputEvent):
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:

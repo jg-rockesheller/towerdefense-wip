@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bltyeb1flnkrg"]
+[gd_scene load_steps=4 format=3 uid="uid://b4vi3lqxr0qc0"]
 
-[ext_resource type="Script" path="res://prototype/enemy_prototype.gd" id="1_35s8e"]
 [ext_resource type="Texture2D" uid="uid://qd83gbjc676n" path="res://prototype/concentric_squares.png" id="1_l5v8j"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_r2il1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dlh5"]
 size = Vector2(14, 14)
@@ -9,7 +9,7 @@ size = Vector2(14, 14)
 [node name="PathFollow2D" type="PathFollow2D"]
 rotates = false
 loop = false
-script = ExtResource("1_35s8e")
+script = ExtResource("1_r2il1")
 
 [node name="Enemy Prototype" type="CharacterBody2D" parent="."]
 
