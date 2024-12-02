@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=4 uid="uid://cmp6shwj5ssbq"]
+[gd_scene load_steps=4 format=3 uid="uid://cmp6shwj5ssbq"]
 
 [ext_resource type="Script" path="res://prototype/prototype.gd" id="1_qrro2"]
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://qd83gbjc676n" path="res://prototype/concentric_squares.png" id="1_vxh23"]
 [ext_resource type="Script" path="res://prototype/path_spawner.gd" id="3_ywb5p"]
 [ext_resource type="PackedScene" uid="uid://dnse1w3ouff6c" path="res://prototype/ui.tscn" id="4_py0bd"]
@@ -17,6 +18,10 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -237.687, -14.0498, 0, 0, 0, 0, 115.167, -14.0498, 0, 0, 0, 0, 115.167, -66.9055, 0, 0, 0, 0, 60.2641, -66.2687, 0, 0, 0, 0, 60.9336, 57.2736, 0, 0, 0, 0, 231, 56)
 }
 point_count = 6
+=======
+[ext_resource type="PackedScene" uid="uid://cyjelf7xocpw7" path="res://scenes/randomized_path.tscn" id="4_8tp6r"]
+[ext_resource type="PackedScene" uid="uid://dnse1w3ouff6c" path="res://scenes/ui.tscn" id="4_py0bd"]
+>>>>>>> 547636fe416c7fef33c87655e801bc56862ff7c3
 
 [node name="Prototype" type="Node2D"]
 script = ExtResource("1_qrro2")
@@ -24,6 +29,7 @@ script = ExtResource("1_qrro2")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
+<<<<<<< HEAD
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 texture_filter = 1
 position = Vector2(1, 0)
@@ -40,6 +46,11 @@ script = ExtResource("3_ywb5p")
 [node name="Timer" type="Timer" parent="PathSpawner"]
 autostart = true
 
+=======
+>>>>>>> 547636fe416c7fef33c87655e801bc56862ff7c3
 [node name="UI" parent="." instance=ExtResource("4_py0bd")]
 
-[connection signal="timeout" from="PathSpawner/Timer" to="PathSpawner" method="_on_timer_timeout"]
+[node name="Randomized Path" parent="." instance=ExtResource("4_8tp6r")]
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(184, 249)

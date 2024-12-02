@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://yjv5a4n1g3ca"
+=======
+uid="uid://sf52goydqg5"
+>>>>>>> 547636fe416c7fef33c87655e801bc56862ff7c3
 path="res://.godot/imported/bomb davit.png-621a7465e6b5ff127490befd57e603d8.ctex"
 metadata={
 "vram_texture": false

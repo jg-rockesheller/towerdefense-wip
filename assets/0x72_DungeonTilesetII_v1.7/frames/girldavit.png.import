@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://1kp8e0ar4b0v"
+=======
+uid="uid://bcfgl3f5yfwms"
+>>>>>>> 547636fe416c7fef33c87655e801bc56862ff7c3
 path="res://.godot/imported/girldavit.png-645e330087216d45d4a99a1044359b4e.ctex"
 metadata={
 "vram_texture": false

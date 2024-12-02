@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://bhm4amrxw2c0h"
+=======
+uid="uid://pn8u662p6bma"
+>>>>>>> 547636fe416c7fef33c87655e801bc56862ff7c3
 path="res://.godot/imported/sprintdavit.png-8f77a4e3435daa52e1298af82d56c1f7.ctex"
 metadata={
 "vram_texture": false

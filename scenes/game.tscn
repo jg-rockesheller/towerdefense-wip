@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://fmaw008fy35a"]
+
+[ext_resource type="PackedScene" uid="uid://dnse1w3ouff6c" path="res://scenes/ui.tscn" id="1_qgt8l"]
+[ext_resource type="PackedScene" uid="uid://cyjelf7xocpw7" path="res://scenes/randomized_path.tscn" id="2_ws336"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="UI" parent="." instance=ExtResource("1_qgt8l")]
+
+[node name="Randomized Path" parent="." instance=ExtResource("2_ws336")]
