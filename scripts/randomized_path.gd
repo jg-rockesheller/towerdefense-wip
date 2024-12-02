@@ -2,7 +2,7 @@
 
 extends Node2D
 
-@onready var enemyScene = preload("res://scenes/enemy.tscn")
+# @onready var enemyScene = preload("res://scenes/enemy.tscn")
 var pathVectors: Array[Vector2]
 
 
@@ -65,5 +65,6 @@ func _ready() -> void:
 
 
 func _on_timer_timeout() -> void:
-	var tempEnemy = enemyScene.instantiate()
-	$Path2D.add_child(tempEnemy)
+	#var tempEnemy = enemyScene.instantiate()
+	#$Path2D.add_child(tempEnemy)
+	pass
