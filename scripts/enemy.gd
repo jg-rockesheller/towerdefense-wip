@@ -1,3 +1,5 @@
+# script by jason
+
 extends PathFollow2D
 
 @export var health = 50

@@ -13,7 +13,6 @@ config_version=5
 config/name="towerdefense-wip"
 run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
 
 [display]
 
@@ -28,3 +27,4 @@ project/assembly_name="towerdefense-wip"
 [global_group]
 
 enemy=""
+unclickable=""
