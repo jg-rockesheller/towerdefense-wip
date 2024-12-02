@@ -1,7 +1,17 @@
+# script by kunwoo
+
 extends Node2D
 
-var placeToggle = false
 @onready var towerScene = preload("res://scenes/tower.tscn")
+var placeToggle = false
+
+
+# section by jason [[[
+var activeButton
+enum TowerClasses {SKELETON, LIZARD, OGRE}
+@export var towerClass: TowerClasses
+# section by jason ]]]
+
 
 func _input(event: InputEvent):
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
@@ -9,16 +19,28 @@ func _input(event: InputEvent):
 		if placeToggle:
 			var tower = towerScene.instantiate()
 			get_tree().get_root().add_child(tower)
-			tower.create(event.position)
+			tower.create(event.position, towerClass)
 			tower.position = get_global_mouse_position()
 
-			$Sprite2D/Button.release_focus()
+			activeButton.release_focus()
 			placeToggle = false
 
 
-func _on_button_toggled(toggled_on: bool) -> void:
-	print(toggled_on)
-
-
-func _on_button_pressed() -> void:
+# section by jason [[[
+func _on_skeleton_button_pressed() -> void:
 	placeToggle = !placeToggle
+	activeButton = $Skeleton/SkeletonButton
+	towerClass = TowerClasses.SKELETON
+
+
+func _on_lizard_button_pressed() -> void:
+	placeToggle = !placeToggle
+	activeButton = $Lizard/LizardButton
+	towerClass = TowerClasses.LIZARD
+
+
+func _on_ogre_button_pressed() -> void:
+	placeToggle = !placeToggle
+	activeButton = $Ogre/OgreButton
+	towerClass = TowerClasses.OGRE
+# section by jason ]]]

@@ -1,6 +1,8 @@
+# script by jason
+
 extends Node2D
 
-
+@onready var enemyScene = preload("res://scenes/enemy.tscn")
 var pathVectors: Array[Vector2]
 
 
@@ -60,3 +62,8 @@ func _ready() -> void:
 		segment.a = pathVectors[i]
 		segment.b = pathVectors[i + 1]
 		new_shape.shape = segment
+
+
+func _on_timer_timeout() -> void:
+	var tempEnemy = enemyScene.instantiate()
+	$Path2D.add_child(tempEnemy)

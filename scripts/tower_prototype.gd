@@ -1,7 +1,9 @@
+# script by jason
+
 extends Area2D
 
 
-@onready var bulletScene = preload("res://prototype/bullet_prototype.tscn")
+@onready var bulletScene = preload("res://scenes/bullet.tscn")
 
 
 var enemyQueue = []

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qd83gbjc676n"
-path="res://.godot/imported/concentric_squares.png-f34cc18f74443893551c9369385ad6e4.ctex"
+uid="uid://wlm4oatdwpir"
+path="res://.godot/imported/360_F_210652799_Anf2bgQFEERSeNvIh13dxGVKQeOdnR3o.jpg-7e90d765082e72a733419504c15a4ba7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://prototype/concentric_squares.png"
-dest_files=["res://.godot/imported/concentric_squares.png-f34cc18f74443893551c9369385ad6e4.ctex"]
+source_file="res://scenes/360_F_210652799_Anf2bgQFEERSeNvIh13dxGVKQeOdnR3o.jpg"
+dest_files=["res://.godot/imported/360_F_210652799_Anf2bgQFEERSeNvIh13dxGVKQeOdnR3o.jpg-7e90d765082e72a733419504c15a4ba7.ctex"]
 
 [params]
 
