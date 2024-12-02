@@ -14,7 +14,7 @@ func _physics_process(_delta: float) -> void:
 
 func create(inpEnemy) -> void:
 	target = inpEnemy
-	print("bullet created")
+	print("test change")
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
