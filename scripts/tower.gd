@@ -1,36 +1,40 @@
-# script by kunwoo
-
 extends Area2D
 
 
 @onready var arrowScene = preload("res://scenes/arrow.tscn")
 
 
-# section by jason [[[
 enum TowerClasses {SKELETON, LIZARD, OGRE}
 var towerClass: TowerClasses
+var damage: int
+var canAttack: bool = true
+var cooldownTime: float
+
 
 @onready var towerClassStats = {
 	TowerClasses.SKELETON: {
 		"Detection Radius": 92,
 		"Bounding Radius":  10,
-		"Recharge Timer":   3,
+		"Recharge Timer":   2,
+		"Damage":           25,
 		"Node":             $Skeleton,
 	},
 	TowerClasses.LIZARD: {
-		"Detection Radius": 27.5,
-		"Bounding Radius":  10,
-		"Recharge Timer":   1,
+		"Detection Radius": 25,
+		"Bounding Radius":  15,
+		"Recharge Timer":   0.75,
+		"Damage":           12.5,
 		"Node":             $Lizard,
 	},
 	TowerClasses.OGRE: {
 		"Detection Radius": 40,
 		"Bounding Radius":  17.5,
-		"Recharge Timer":   5,
+		"Recharge Timer":   3,
+		"Damage":           50,
 		"Node":             $Ogre,
 	},
 }
-# section by jason ]]]
+
 
 var enemyQueue = []
 var curEnemy
@@ -38,18 +42,16 @@ var curEnemy
 
 func create(clickPos: Vector2, inpClass: TowerClasses) -> void:
 	self.position = clickPos
-	print(self.position)
-	print(get_parent())
 
-	# section by jason [[[
 	towerClass = inpClass
 	$"Detection Shape".shape = CircleShape2D.new()
 	$"Detection Shape".shape.radius = towerClassStats[towerClass]["Detection Radius"]
 	$"Bounding Shape/CollisionShape2D".shape = CircleShape2D.new()
 	$"Bounding Shape/CollisionShape2D".shape.radius = towerClassStats[towerClass]["Bounding Radius"]
-	$Timer.wait_time = towerClassStats[towerClass]["Recharge Timer"]
+	damage = towerClassStats[towerClass]["Damage"]
+	cooldownTime = towerClassStats[towerClass]["Recharge Timer"]
+	$Timer.wait_time = cooldownTime
 	towerClassStats[towerClass]["Node"].visible = true
-	# section by jason ]]]
 
 
 func selectEnemy() -> void:
@@ -64,33 +66,70 @@ func selectEnemy() -> void:
 	curEnemy = enemyQueue[maxProgressIdx]
 
 
-func _on_body_entered(body: Node2D) -> void:
-	if "Enemy" not in body.name: return
-	enemyQueue.append(body)
-	selectEnemy()
-
-
-func _on_body_exited(body: Node2D) -> void:
-	if body not in enemyQueue: return
-	enemyQueue.erase(body)
-	selectEnemy()
-
-
 func _on_timer_timeout() -> void:
+	canAttack = true
 	if curEnemy == null: return
 	attack()
 
 
-# section by jason [[[
+func _on_area_entered(area: Area2D) -> void:
+	if "Enemy" not in area.name: return
+	enemyQueue.append(area)
+	selectEnemy()
+
+	if canAttack == true: attack()
+
+
+func _on_area_exited(area: Area2D) -> void:
+	if area not in enemyQueue:
+		if towerClass == TowerClasses.LIZARD: $Lizard/Pivot.rotation = 0
+		return
+	enemyQueue.erase(area)
+	selectEnemy()
+
+
 func attack() -> void:
-	print(towerClass)
+	canAttack = false
 	match towerClass:
 		TowerClasses.SKELETON:
+			$Skeleton/DrawBow.play("DrawBow")
+			await Signal($Skeleton/DrawBow, "animation_finished")
 			var tempArrow = arrowScene.instantiate()
 			add_child(tempArrow)
-			tempArrow.create(curEnemy)
+			tempArrow.create(curEnemy, damage)
+		TowerClasses.LIZARD:
+			$Lizard/Pivot.look_at(curEnemy.global_position)
+			$Lizard.flip_h = curEnemy.global_position.x < global_position.x
+			$Lizard/LizardSwing.play("swing")
+			await Signal($Lizard/LizardSwing, "animation_finished")
+		TowerClasses.OGRE:
+			$Ogre/Pivot.look_at(curEnemy.global_position)
+			$Ogre.flip_h = curEnemy.global_position.x < global_position.x
+			$Ogre/OgreSwing.play("swing")
+			await Signal($Ogre/OgreSwing, "animation_finished")
+			print("finished swing")
+			$Ogre/Pivot.rotation = 0
+	$Timer.start(cooldownTime)
 
-func _on_bounding_shape_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+
+func _on_bounding_shape_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if not event.is_pressed(): return
 	print("TODO: upgrading / removing tower")
-# section by jason ]]]
+
+
+func _on_knife_hitbox_area_entered(area: Area2D) -> void:
+	if not area.is_in_group("enemy"): return
+	area.get_parent().hit(damage)
+
+
+func _process(_delta: float) -> void:
+	if curEnemy == null: return
+	if canAttack and not curEnemy == null: attack()
+	if towerClass == TowerClasses.SKELETON:
+		$Skeleton/Pivot.look_at(curEnemy.global_position)
+		$Skeleton.flip_h = curEnemy.global_position.x < global_position.x
+
+
+func _on_battle_axe_hitbox_area_entered(area: Area2D) -> void:
+	if not area.is_in_group("enemy"): return
+	area.get_parent().hit(damage)

@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bt8uj8pp1tmkx" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/lizard_m_idle_anim_f1.png" id="9_m6vts"]
 [ext_resource type="Texture2D" uid="uid://cc1fasb6igr8i" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/lizard_m_idle_anim_f2.png" id="10_xjboq"]
 [ext_resource type="Texture2D" uid="uid://bfg277pi46wi3" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/lizard_m_idle_anim_f3.png" id="11_qty1j"]
-[ext_resource type="Texture2D" uid="uid://dfp0sphemlnl5" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/weapon_knife.png" id="12_o6smc"]
+[ext_resource type="Texture2D" uid="uid://b26ss6da617im" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/weapon_regular_sword.png" id="12_kog4f"]
 [ext_resource type="Texture2D" uid="uid://bfm48qlfm12hw" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/ogre_idle_anim_f0.png" id="13_05vlh"]
 [ext_resource type="Texture2D" uid="uid://cbpjjclkfgboy" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/ogre_idle_anim_f1.png" id="14_aft2v"]
 [ext_resource type="Texture2D" uid="uid://nabanlr8yf8y" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/ogre_idle_anim_f2.png" id="15_u04pm"]
@@ -847,12 +847,18 @@ position = Vector2(289.062, -30.1406)
 scale = Vector2(3.75781, 3.75781)
 sprite_frames = SubResource("SpriteFrames_ldy24")
 
-[node name="Knife" type="Sprite2D" parent="Lizard"]
-position = Vector2(10.6667, 3.2)
-texture = ExtResource("12_o6smc")
+[node name="Pivot" type="Node2D" parent="Lizard"]
+
+[node name="RotateAround" type="Node2D" parent="Lizard/Pivot"]
+
+[node name="Knife" type="Sprite2D" parent="Lizard/Pivot/RotateAround"]
+position = Vector2(0.24961, 6.69023)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("12_kog4f")
+offset = Vector2(13, -3)
 
 [node name="LizardButton" type="Button" parent="Lizard"]
-offset_left = -8.0
+offset_left = -7.99999
 offset_top = -6.0
 offset_right = 14.0
 offset_bottom = 14.0
@@ -864,7 +870,7 @@ scale = Vector2(3.06836, 3.06836)
 sprite_frames = SubResource("SpriteFrames_x4vqn")
 
 [node name="Battle Axe" type="Sprite2D" parent="Ogre"]
-position = Vector2(16.3404, 2.7234)
+position = Vector2(15.3627, 5.00475)
 texture = ExtResource("17_a5hnn")
 
 [node name="OgreButton" type="Button" parent="Ogre"]

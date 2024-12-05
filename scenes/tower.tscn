@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c8lopr53mkftt"]
+[gd_scene load_steps=35 format=3 uid="uid://c8lopr53mkftt"]
 
 [ext_resource type="Script" path="res://scripts/tower.gd" id="1_8f7lg"]
 [ext_resource type="Texture2D" uid="uid://bnv4k16o00l40" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/skelet_idle_anim_f0.png" id="2_j1xmf"]
@@ -6,15 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://6721ltahsl4h" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/skelet_idle_anim_f2.png" id="4_ffo3w"]
 [ext_resource type="Texture2D" uid="uid://b6u131gy6i02d" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/skelet_idle_anim_f3.png" id="5_cbf2o"]
 [ext_resource type="Texture2D" uid="uid://be3dyea5suhq7" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/weapon_bow.png" id="6_7hx3y"]
+[ext_resource type="Texture2D" uid="uid://baqp1c2gyov5y" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/weapon_bow_2.png" id="7_43hnu"]
 [ext_resource type="Texture2D" uid="uid://wriqsji8f51i" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/lizard_m_idle_anim_f0.png" id="7_cg7eu"]
 [ext_resource type="Texture2D" uid="uid://bfm48qlfm12hw" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/ogre_idle_anim_f0.png" id="7_uxih6"]
+[ext_resource type="Texture2D" uid="uid://b6xet1qq1wnpm" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/weapon_arrow.png" id="8_0rgi3"]
 [ext_resource type="Texture2D" uid="uid://bt8uj8pp1tmkx" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/lizard_m_idle_anim_f1.png" id="8_nj436"]
 [ext_resource type="Texture2D" uid="uid://cbpjjclkfgboy" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/ogre_idle_anim_f1.png" id="8_pingr"]
 [ext_resource type="Texture2D" uid="uid://nabanlr8yf8y" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/ogre_idle_anim_f2.png" id="9_0i3ji"]
 [ext_resource type="Texture2D" uid="uid://cc1fasb6igr8i" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/lizard_m_idle_anim_f2.png" id="9_e27pr"]
 [ext_resource type="Texture2D" uid="uid://bm8w64ahi6abm" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/ogre_idle_anim_f3.png" id="10_cg1jy"]
 [ext_resource type="Texture2D" uid="uid://bfg277pi46wi3" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/lizard_m_idle_anim_f3.png" id="10_hmbyv"]
-[ext_resource type="Texture2D" uid="uid://dfp0sphemlnl5" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/weapon_knife.png" id="11_uf225"]
+[ext_resource type="Texture2D" uid="uid://b26ss6da617im" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/weapon_regular_sword.png" id="11_c7nnd"]
 [ext_resource type="Texture2D" uid="uid://cusq0bbptvip" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/weapon_double_axe.png" id="11_yhl44"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ryxre"]
@@ -43,6 +45,68 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_jugs6"]
+resource_name = "DrawBow"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Bow:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("7_43hnu"), ExtResource("6_7hx3y")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Arrow:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_k1dsf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Bow:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_7hx3y")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Arrow:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j822y"]
+_data = {
+"DrawBow": SubResource("Animation_jugs6"),
+"RESET": SubResource("Animation_k1dsf")
+}
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_3bii2"]
 animations = [{
 "frames": [{
@@ -62,6 +126,119 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_tpv5p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/RotateAround/Knife:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/RotateAround/Knife:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(13, -3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/RotateAround/Knife/KnifeHitbox/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(9.60001, -2.13334)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/RotateAround:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_pq31a"]
+resource_name = "swing"
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/RotateAround/Knife:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5708, 1.5708, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/RotateAround/Knife:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(13, -3), Vector2(0, -25), Vector2(0, -25), Vector2(13, -3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/RotateAround/Knife/KnifeHitbox/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(9.60001, -2.13334), Vector2(-0.00527549, -17.6565), Vector2(-0.00527549, -17.6565), Vector2(9.60001, -2.13334)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/RotateAround:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.436332, 0.436332, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p3ccg"]
+_data = {
+"RESET": SubResource("Animation_tpv5p"),
+"swing": SubResource("Animation_pq31a")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bnr2i"]
+size = Vector2(7.46667, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xqawm"]
 animations = [{
@@ -83,6 +260,94 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_l5f6b"]
+resource_name = "swing"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/RotateAround:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.95, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 6.28319, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/RotateAround/BattleAxe:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.95, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5708, 1.5708, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/RotateAround/BattleAxe:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.95, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(13, 5), Vector2(25, 5), Vector2(25, 5), Vector2(13, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_8yamf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/RotateAround:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/RotateAround/BattleAxe:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/RotateAround/BattleAxe:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(13, 5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5m0fm"]
+_data = {
+"RESET": SubResource("Animation_8yamf"),
+"swing": SubResource("Animation_l5f6b")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1ulw"]
+size = Vector2(15.5826, 25.6)
+
 [node name="Tower" type="Area2D"]
 script = ExtResource("1_8f7lg")
 
@@ -94,31 +359,59 @@ shape = SubResource("CircleShape2D_ryxre")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounding Shape"]
 shape = SubResource("CircleShape2D_okg6p")
 
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
 [node name="Skeleton" type="AnimatedSprite2D" parent="."]
 visible = false
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_cbiaf")
 frame_progress = 0.140251
 
-[node name="Bow" type="Sprite2D" parent="Skeleton"]
+[node name="DrawBow" type="AnimationPlayer" parent="Skeleton"]
+libraries = {
+"": SubResource("AnimationLibrary_j822y")
+}
+
+[node name="Pivot" type="Node2D" parent="Skeleton"]
+
+[node name="Bow" type="Sprite2D" parent="Skeleton/Pivot"]
 position = Vector2(6, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_7hx3y")
 
+[node name="Arrow" type="Sprite2D" parent="Skeleton/Pivot"]
+visible = false
+position = Vector2(6, 1)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_0rgi3")
+
 [node name="Lizard" type="AnimatedSprite2D" parent="."]
 visible = false
 texture_filter = 1
-position = Vector2(-2.98023e-08, -5)
 scale = Vector2(0.9375, 0.9375)
 sprite_frames = SubResource("SpriteFrames_3bii2")
 frame_progress = 0.508637
+offset = Vector2(0, -5)
 
-[node name="Knife" type="Sprite2D" parent="Lizard"]
-position = Vector2(10.6667, 3.2)
-texture = ExtResource("11_uf225")
+[node name="LizardSwing" type="AnimationPlayer" parent="Lizard"]
+libraries = {
+"": SubResource("AnimationLibrary_p3ccg")
+}
+
+[node name="Pivot" type="Node2D" parent="Lizard"]
+
+[node name="RotateAround" type="Node2D" parent="Lizard/Pivot"]
+
+[node name="Knife" type="Sprite2D" parent="Lizard/Pivot/RotateAround"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("11_c7nnd")
+offset = Vector2(13, -3)
+
+[node name="KnifeHitbox" type="Area2D" parent="Lizard/Pivot/RotateAround/Knife"]
+scale = Vector2(1.42857, 1.42857)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lizard/Pivot/RotateAround/Knife/KnifeHitbox"]
+position = Vector2(9.60001, -2.13334)
+shape = SubResource("RectangleShape2D_bnr2i")
 
 [node name="Ogre" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -128,11 +421,35 @@ scale = Vector2(0.898437, 0.898437)
 sprite_frames = SubResource("SpriteFrames_xqawm")
 frame_progress = 0.494474
 
-[node name="Battle Axe" type="Sprite2D" parent="Ogre"]
-position = Vector2(16.3404, 2.7234)
+[node name="OgreSwing" type="AnimationPlayer" parent="Ogre"]
+libraries = {
+"": SubResource("AnimationLibrary_5m0fm")
+}
+
+[node name="Pivot" type="Node2D" parent="Ogre"]
+scale = Vector2(1, 1)
+
+[node name="RotateAround" type="Node2D" parent="Ogre/Pivot"]
+
+[node name="BattleAxe" type="Sprite2D" parent="Ogre/Pivot/RotateAround"]
+position = Vector2(13, 5)
+scale = Vector2(1, 1)
 texture = ExtResource("11_yhl44")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[node name="BattleAxeHitbox" type="Area2D" parent="Ogre/Pivot/RotateAround/BattleAxe"]
+position = Vector2(-16.3404, -2.7234)
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ogre/Pivot/RotateAround/BattleAxe/BattleAxeHitbox"]
+position = Vector2(16.6969, 2.7321)
+shape = SubResource("RectangleShape2D_i1ulw")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="input_event" from="Bounding Shape" to="." method="_on_bounding_shape_input_event"]
+[connection signal="area_entered" from="Lizard/Pivot/RotateAround/Knife/KnifeHitbox" to="." method="_on_knife_hitbox_area_entered"]
+[connection signal="area_entered" from="Ogre/Pivot/RotateAround/BattleAxe/BattleAxeHitbox" to="." method="_on_battle_axe_hitbox_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

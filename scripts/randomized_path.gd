@@ -2,7 +2,7 @@
 
 extends Node2D
 
-# @onready var enemyScene = preload("res://scenes/enemy.tscn")
+@onready var enemyScene = preload("res://scenes/enemy.tscn")
 var pathVectors: Array[Vector2]
 
 
@@ -14,7 +14,7 @@ func randomSection(tl: Vector2, br: Vector2) -> void:
 		var newPoint: Vector2 = Vector2(
 			randi_range(tl.x + (sectionLength * (i - 1)), tl.x + (sectionLength * i)),
 			randi_range(tl.y, br.y))
-		
+
 		for prevPoint in pathVectors.slice(len(pathVectors) - i, len(pathVectors) - 1):
 			if newPoint.y < prevPoint.y + rad and newPoint.y > prevPoint.y - rad:
 				newPoint = Vector2(
@@ -65,6 +65,5 @@ func _ready() -> void:
 
 
 func _on_timer_timeout() -> void:
-	#var tempEnemy = enemyScene.instantiate()
-	#$Path2D.add_child(tempEnemy)
-	pass
+	var tempEnemy = enemyScene.instantiate()
+	$Path2D.add_child(tempEnemy)

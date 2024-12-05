@@ -2,22 +2,28 @@ extends CharacterBody2D
 
 
 var target
-@export var damage = 25
+var damage
+var speed: float = 200
 
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	if target == null: return
-	velocity = global_position.direction_to(target.global_position) * 500
+	velocity = global_position.direction_to(target.global_position) * speed
 	look_at(target.global_position)
 
 
-func create(inpEnemy) -> void:
+func create(inpEnemy, inpDamage) -> void:
 	target = inpEnemy
+	damage = inpDamage
 	print("bullet created")
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if "Enemy" not in body.name: return
-	body.get_parent().hit(damage)
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if not area.is_in_group("enemy"): return
+	area.get_parent().hit(damage)
+	queue_free()
+
+
+func _on_timer_timeout() -> void:
 	queue_free()

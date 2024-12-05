@@ -15,7 +15,6 @@ enum TowerClasses {SKELETON, LIZARD, OGRE}
 
 func _input(event: InputEvent):
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
-		var evLocal = make_input_local(event)
 		if placeToggle:
 			var tower = towerScene.instantiate()
 			get_tree().get_root().add_child(tower)
