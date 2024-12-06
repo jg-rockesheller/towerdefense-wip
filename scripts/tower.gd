@@ -11,27 +11,24 @@ var canAttack: bool = true
 var cooldownTime: float
 
 
-@onready var towerClassStats = {
+var towerClassStats = {
 	TowerClasses.SKELETON: {
 		"Detection Radius": 92,
 		"Bounding Radius":  10,
 		"Recharge Timer":   2,
-		"Damage":           25,
-		"Node":             $Skeleton,
+		"Damage":           12.5,
 	},
 	TowerClasses.LIZARD: {
 		"Detection Radius": 25,
-		"Bounding Radius":  15,
+		"Bounding Radius":  12,
 		"Recharge Timer":   0.75,
-		"Damage":           12.5,
-		"Node":             $Lizard,
+		"Damage":           25,
 	},
 	TowerClasses.OGRE: {
 		"Detection Radius": 40,
-		"Bounding Radius":  17.5,
+		"Bounding Radius":  15,
 		"Recharge Timer":   3,
 		"Damage":           50,
-		"Node":             $Ogre,
 	},
 }
 
@@ -51,7 +48,10 @@ func create(clickPos: Vector2, inpClass: TowerClasses) -> void:
 	damage = towerClassStats[towerClass]["Damage"]
 	cooldownTime = towerClassStats[towerClass]["Recharge Timer"]
 	$Timer.wait_time = cooldownTime
-	towerClassStats[towerClass]["Node"].visible = true
+	match inpClass:
+		TowerClasses.SKELETON: $Skeleton.visible = true
+		TowerClasses.LIZARD: $Lizard.visible = true
+		TowerClasses.OGRE: $Ogre.visible = true
 
 
 func selectEnemy() -> void:
@@ -98,17 +98,20 @@ func attack() -> void:
 			add_child(tempArrow)
 			tempArrow.create(curEnemy, damage)
 		TowerClasses.LIZARD:
+			$Lizard/Pivot/RotateAround/Knife/KnifeHitbox/CollisionShape2D.disabled = false
 			$Lizard/Pivot.look_at(curEnemy.global_position)
 			$Lizard.flip_h = curEnemy.global_position.x < global_position.x
 			$Lizard/LizardSwing.play("swing")
 			await Signal($Lizard/LizardSwing, "animation_finished")
+			$Lizard/Pivot/RotateAround/Knife/KnifeHitbox/CollisionShape2D.disabled = true
 		TowerClasses.OGRE:
+			$Ogre/Pivot/RotateAround/BattleAxe/BattleAxeHitbox/CollisionShape2D.disabled = false
 			$Ogre/Pivot.look_at(curEnemy.global_position)
 			$Ogre.flip_h = curEnemy.global_position.x < global_position.x
 			$Ogre/OgreSwing.play("swing")
 			await Signal($Ogre/OgreSwing, "animation_finished")
-			print("finished swing")
 			$Ogre/Pivot.rotation = 0
+			$Ogre/Pivot/RotateAround/BattleAxe/BattleAxeHitbox/CollisionShape2D.disabled = true
 	$Timer.start(cooldownTime)
 
 
