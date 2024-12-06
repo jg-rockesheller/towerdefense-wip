@@ -6,6 +6,7 @@ var towerScript = preload("res://scripts/tower.gd").new()
 var placeToggle = false
 
 
+var coins = 50
 var activeButton
 var towerClasses = towerScript.TowerClasses
 var towerClass = towerClasses.SKELETON
@@ -14,6 +15,7 @@ var canPlace = false
 
 
 func _physics_process(_delta: float):
+	$Coins.text = "Coins: " + str(coins)
 	if not selected: return
 	$SelectionCircle.global_position = get_global_mouse_position()
 	$SelectionCircle/Area2D/CollisionShape2D.shape = CircleShape2D.new()
@@ -34,21 +36,28 @@ func _draw():
 
 
 func _input(event: InputEvent):
-	if canPlace and event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
-		if placeToggle:
-			var tower = towerScene.instantiate()
-			get_tree().get_root().add_child(tower)
-			tower.create(event.position, towerClass)
-			tower.position = get_global_mouse_position()
+	if placeToggle and canPlace and event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
+		var tower = towerScene.instantiate()
+		get_tree().get_root().add_child(tower)
+		tower.create(event.position, towerClass)
+		tower.position = get_global_mouse_position()
 
-			activeButton.release_focus()
-			placeToggle = false
-			selected = false
-			canPlace = false
-			queue_redraw()
+		activeButton.release_focus()
+		placeToggle = false
+		selected = false
+		canPlace = false
+		coins -= towerScript.towerClassStats[towerClass]["Cost"]
+		queue_redraw()
+
+	elif placeToggle and event is InputEventMouseButton:
+		activeButton.release_focus()
+		placeToggle = false
 
 
 func _on_skeleton_button_pressed() -> void:
+	if towerScript.towerClassStats[towerClass]["Cost"] > coins:
+		$Skeleton/SkeletonButton.release_focus()
+		return
 	placeToggle = !placeToggle
 	activeButton = $Skeleton/SkeletonButton
 	towerClass = towerClasses.SKELETON
@@ -56,6 +65,9 @@ func _on_skeleton_button_pressed() -> void:
 
 
 func _on_lizard_button_pressed() -> void:
+	if towerScript.towerClassStats[towerClass]["Cost"] > coins:
+		$Lizard/LizardButton.release_focus()
+		return
 	placeToggle = !placeToggle
 	activeButton = $Lizard/LizardButton
 	towerClass = towerClasses.LIZARD
@@ -63,6 +75,9 @@ func _on_lizard_button_pressed() -> void:
 
 
 func _on_ogre_button_pressed() -> void:
+	if towerScript.towerClassStats[towerClass]["Cost"] > coins:
+		$Ogre/OgreButton.release_focus()
+		return
 	placeToggle = !placeToggle
 	activeButton = $Ogre/OgreButton
 	towerClass = towerClasses.OGRE

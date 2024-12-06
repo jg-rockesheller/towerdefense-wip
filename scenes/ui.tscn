@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dnse1w3ouff6c"]
+[gd_scene load_steps=22 format=3 uid="uid://dnse1w3ouff6c"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_o4jko"]
 [ext_resource type="Texture2D" uid="uid://bnv4k16o00l40" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/skelet_idle_anim_f0.png" id="2_ljw1k"]
@@ -17,6 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://bm8w64ahi6abm" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/ogre_idle_anim_f3.png" id="16_svmtk"]
 [ext_resource type="Texture2D" uid="uid://cusq0bbptvip" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/weapon_double_axe.png" id="17_a5hnn"]
 [ext_resource type="Texture2D" uid="uid://r0mxrma7ia5o" path="res://assets/door.png" id="17_aalr1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8lwoj"]
+size = Vector2(294, 604)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qm7vh"]
 animations = [{
@@ -85,9 +88,33 @@ script = ExtResource("1_o4jko")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
+[node name="Coins" type="Label" parent="."]
+offset_left = 255.0
+offset_top = -219.0
+offset_right = 429.0
+offset_bottom = -148.0
+text = "Coins: 50"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -2
+texture_filter = 1
+position = Vector2(342.5, 2.60472e-05)
+scale = Vector2(13.0952, 19.2857)
+texture = ExtResource("17_aalr1")
+
+[node name="Area2D" type="Area2D" parent="Background" groups=["unclickable"]]
+position = Vector2(-26.1546, -1.3506e-06)
+scale = Vector2(0.0763639, 0.0518519)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Area2D"]
+position = Vector2(349, -4)
+shape = SubResource("RectangleShape2D_8lwoj")
+
 [node name="Skeleton" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(288, -99)
+position = Vector2(267, -99)
 scale = Vector2(5.1875, 5.1875)
 sprite_frames = SubResource("SpriteFrames_qm7vh")
 frame_progress = 0.59388
@@ -98,6 +125,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_d7l2q")
 
 [node name="SkeletonButton" type="Button" parent="Skeleton"]
+z_index = -1
 offset_left = -6.0
 offset_top = -7.0
 offset_right = 10.0
@@ -105,7 +133,7 @@ offset_bottom = 8.0
 
 [node name="Lizard" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(289.062, -30.1406)
+position = Vector2(269.062, -30.1406)
 scale = Vector2(3.75781, 3.75781)
 sprite_frames = SubResource("SpriteFrames_ldy24")
 
@@ -120,6 +148,7 @@ texture = ExtResource("12_kog4f")
 offset = Vector2(13, -3)
 
 [node name="LizardButton" type="Button" parent="Lizard"]
+z_index = -1
 offset_left = -9.0
 offset_top = -6.0
 offset_right = 14.0
@@ -127,7 +156,7 @@ offset_bottom = 14.0
 
 [node name="Ogre" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(292, 57)
+position = Vector2(270, 57)
 scale = Vector2(3.06836, 3.06836)
 sprite_frames = SubResource("SpriteFrames_x4vqn")
 
@@ -136,21 +165,15 @@ position = Vector2(15.3627, 5.00475)
 texture = ExtResource("17_a5hnn")
 
 [node name="OgreButton" type="Button" parent="Ogre"]
+z_index = -1
 offset_left = -11.0
 offset_top = -9.0
 offset_right = 24.0
 offset_bottom = 19.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -2
-texture_filter = 1
-position = Vector2(342.5, 2.60472e-05)
-scale = Vector2(13.0952, 19.2857)
-texture = ExtResource("17_aalr1")
-
 [node name="SelectionCircle" type="Node2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="SelectionCircle"]
+[node name="Area2D" type="Area2D" parent="SelectionCircle" groups=["unclickable"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SelectionCircle/Area2D"]
 
