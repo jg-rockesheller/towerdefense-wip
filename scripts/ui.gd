@@ -5,7 +5,6 @@ extends Node2D
 @onready var towerScene = preload("res://scenes/tower.tscn")
 var placeToggle = false
 
-
 # section by jason [[[
 var activeButton
 enum TowerClasses {SKELETON, LIZARD, OGRE}
@@ -44,3 +43,7 @@ func _on_ogre_button_pressed() -> void:
 	activeButton = $Ogre/OgreButton
 	towerClass = TowerClasses.OGRE
 # section by jason ]]]
+
+
+func _on_play_button_pressed() -> void:
+	get_parent().get_node("Randomized Path").waves()
