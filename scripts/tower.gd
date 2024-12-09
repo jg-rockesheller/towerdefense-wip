@@ -137,6 +137,11 @@ func _on_battle_axe_hitbox_area_entered(area: Area2D) -> void:
 	area.get_parent().hit(damage)
 
 
+func _input(inputEvent) -> void:
+	pass
+
+
 func _on_bounding_shape_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if not event.is_pressed(): return
+	$UpgradeMenu.visible = true
 	print("TODO: upgrading / removing tower")
