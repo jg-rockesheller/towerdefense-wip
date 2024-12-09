@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dnse1w3ouff6c"]
+[gd_scene load_steps=24 format=4 uid="uid://dnse1w3ouff6c"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_o4jko"]
 [ext_resource type="Texture2D" uid="uid://bnv4k16o00l40" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/skelet_idle_anim_f0.png" id="2_ljw1k"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bm8w64ahi6abm" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/ogre_idle_anim_f3.png" id="16_svmtk"]
 [ext_resource type="Texture2D" uid="uid://cusq0bbptvip" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/weapon_double_axe.png" id="17_a5hnn"]
 [ext_resource type="Texture2D" uid="uid://r0mxrma7ia5o" path="res://assets/door.png" id="17_aalr1"]
+[ext_resource type="Texture2D" uid="uid://qd83gbjc676n" path="res://scenes/concentric_squares.png" id="18_adq2o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8lwoj"]
 size = Vector2(294, 604)
@@ -180,6 +181,18 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SelectionCircle/Area2D"]
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(299, 200)
+scale = Vector2(4.25, 3.6875)
+texture = ExtResource("18_adq2o")
+
+[node name="PlayButton" type="Button" parent="Sprite2D"]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+
 [connection signal="pressed" from="Skeleton/SkeletonButton" to="." method="_on_skeleton_button_pressed"]
 [connection signal="pressed" from="Lizard/LizardButton" to="." method="_on_lizard_button_pressed"]
 [connection signal="pressed" from="Ogre/OgreButton" to="." method="_on_ogre_button_pressed"]
+[connection signal="pressed" from="Sprite2D/PlayButton" to="." method="_on_play_button_pressed"]

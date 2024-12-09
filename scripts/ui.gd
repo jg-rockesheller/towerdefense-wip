@@ -5,8 +5,6 @@ var towerScript = preload("res://scripts/tower.gd").new()
 @onready var towerScene = preload("res://scenes/tower.tscn")
 var placeToggle = false
 
-
-var coins = 50
 var activeButton
 var towerClasses = towerScript.TowerClasses
 var towerClass = towerClasses.SKELETON
@@ -80,5 +78,10 @@ func _on_ogre_button_pressed() -> void:
 		return
 	placeToggle = !placeToggle
 	activeButton = $Ogre/OgreButton
-	towerClass = towerClasses.OGRE
+	towerClass = TowerClasses.OGRE
 	selected = true
+# section by jason ]]]
+
+
+func _on_play_button_pressed() -> void:
+	get_parent().get_node("Randomized Path").waves()
