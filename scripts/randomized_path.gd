@@ -4,6 +4,10 @@ extends Node2D
 
 @onready var enemyScene = preload("res://scenes/enemy.tscn")
 var pathVectors: Array[Vector2]
+var current_enemies = 4
+var total_enemies = current_enemies
+#var health_increment = x
+var is_wave = false
 
 
 func randomSection(tl: Vector2, br: Vector2) -> void:
@@ -63,7 +67,23 @@ func _ready() -> void:
 		segment.b = pathVectors[i + 1]
 		new_shape.shape = segment
 
+func waves():
+	current_enemies = round((current_enemies + 1) * 1.05)
+	total_enemies = current_enemies
+	#health *= 2
+	is_wave = true
+
+
 
 func _on_timer_timeout() -> void:
+<<<<<<< HEAD
 	var tempEnemy = enemyScene.instantiate()
 	$Path2D.add_child(tempEnemy)
+=======
+	if total_enemies != 0 and is_wave == true:
+		var tempEnemy = enemyScene.instantiate()
+		$Path2D.add_child(tempEnemy)
+		total_enemies -= 1
+	else:
+		is_wave = false
+>>>>>>> 3bfe8bb4ddd518920fa08547c64f31e88ae0fae9
