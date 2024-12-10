@@ -5,6 +5,7 @@ var towerScript = preload("res://scripts/tower.gd").new()
 @onready var towerScene = preload("res://scenes/tower.tscn")
 var placeToggle = false
 
+
 @export var coins = 50
 var activeButton
 var towerClasses = towerScript.TowerClasses
@@ -12,10 +13,12 @@ var towerClass = towerClasses.SKELETON
 var selected = false
 var canPlace = false
 var curWave: int = 0
+var health = 100
 
 
 func _physics_process(_delta: float):
-	$Coins.text = "Coins: " + str(coins)
+	$Coins.text = "Coins: " + str(coins) + "\nHealth: " + str(health)
+	if health <= 0: gameOver()
 	if not selected: return
 	$SelectionCircle.global_position = get_global_mouse_position()
 	$SelectionCircle/Area2D/CollisionShape2D.shape = CircleShape2D.new()
@@ -26,6 +29,10 @@ func _physics_process(_delta: float):
 		canPlace = false
 
 	queue_redraw()
+
+
+func gameOver():
+	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 
 func _draw():
@@ -87,4 +94,4 @@ func _on_ogre_button_pressed() -> void:
 func _on_play_button_pressed() -> void:
 	curWave += 1
 	get_parent().get_node("Randomized Path").waves()
-	$WaveLabel.text = "Waves: " + str(curWave)
+	$WaveLabel.text = "Wave: " + str(curWave)

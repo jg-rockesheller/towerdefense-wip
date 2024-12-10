@@ -159,8 +159,10 @@ position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_j2jnm")
 
 [node name="Node2D" type="Node2D" parent="."]
+texture_filter = 1
 
 [node name="Ryder Davit" type="AnimatedSprite2D" parent="Node2D"]
+visible = false
 texture_filter = 1
 position = Vector2(-2, -6)
 sprite_frames = SubResource("SpriteFrames_6f5cr")
@@ -184,7 +186,7 @@ autoplay = "default"
 frame_progress = 0.571849
 
 [node name="Regular Davit" type="AnimatedSprite2D" parent="Node2D"]
-visible = false
+texture_filter = 1
 position = Vector2(-2, -6)
 sprite_frames = SubResource("SpriteFrames_qm6vg")
 autoplay = "default"

@@ -19,7 +19,7 @@ var towerClassStats = {
 		"Detection Radius": 92,
 		"Bounding Radius":  10,
 		"Recharge Timer":   1,
-		"Damage":           12.5,
+		"Damage":           15,
 		"Cost":             30,
 	},
 	TowerClasses.LIZARD: {

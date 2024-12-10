@@ -1,11 +1,15 @@
 extends PathFollow2D
 
+
 @export var health = 25
-@export var speed = 75
-var coinsOnKill = 12
+@export var speed = 50
+var coinsOnKill = 5
+
 
 func _process(delta: float) -> void:
-	if progress_ratio == 1: queue_free()
+	if progress_ratio == 1:
+		get_parent().get_parent().get_parent().get_node("UI").health -= health * 0.25
+		queue_free()
 	progress += speed * delta
 
 
@@ -19,8 +23,10 @@ func die():
 	queue_free()
 
 
+
 enum EnemyClasses {Ryder, Bomb, Sprint, Regular}
 var enemyClass: EnemyClasses
+
 
 @onready var enemyClassStats = {
 	EnemyClasses.Ryder: {
