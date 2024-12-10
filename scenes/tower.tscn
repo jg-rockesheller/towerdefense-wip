@@ -447,17 +447,16 @@ shape = SubResource("RectangleShape2D_i1ulw")
 disabled = true
 
 [node name="UpgradeMenu" type="Sprite2D" parent="."]
-visible = false
 z_index = 50
 texture_filter = 1
-position = Vector2(0, -46)
-scale = Vector2(2.19048, 2.07143)
+position = Vector2(0, -79.5)
+scale = Vector2(4.28571, 4.17857)
 texture = ExtResource("19_lhlpt")
 
 [node name="Close" type="Sprite2D" parent="UpgradeMenu"]
 modulate = Color(1, 0, 0, 1)
-position = Vector2(4.45108, -10.6207)
-scale = Vector2(0.641983, 0.301724)
+position = Vector2(7.25108, -10.6207)
+scale = Vector2(0.264718, 0.270984)
 texture = ExtResource("20_44rm2")
 
 [node name="CloseButton" type="Button" parent="UpgradeMenu/Close"]
@@ -469,7 +468,7 @@ offset_bottom = 8.0
 
 [node name="Upgrade" type="Sprite2D" parent="UpgradeMenu"]
 modulate = Color(0, 1, 0, 1)
-position = Vector2(-4.38556, -1.00089)
+position = Vector2(-4.38556, -1.02976)
 scale = Vector2(0.434065, 0.245801)
 texture = ExtResource("20_44rm2")
 
@@ -482,7 +481,7 @@ offset_bottom = 8.0
 
 [node name="Sell" type="Sprite2D" parent="UpgradeMenu"]
 modulate = Color(1, 1, 0, 1)
-position = Vector2(-4.38556, 4.79221)
+position = Vector2(-4.38556, 6.69435)
 scale = Vector2(0.434065, 0.245801)
 texture = ExtResource("20_44rm2")
 
@@ -493,6 +492,35 @@ offset_top = -8.0
 offset_right = 8.0
 offset_bottom = 8.0
 
+[node name="UpgradeLabel" type="Node2D" parent="UpgradeMenu"]
+position = Vector2(-1.82608, 1.90217)
+scale = Vector2(0.15, 0.15)
+
+[node name="UpgradeLabel" type="Label" parent="UpgradeMenu/UpgradeLabel"]
+offset_left = -38.8043
+offset_top = -7.24137
+offset_right = 32.1957
+offset_bottom = 15.7586
+text = "Upgrade:"
+
+[node name="SellLabel" type="Node2D" parent="UpgradeMenu"]
+position = Vector2(-7.76085, 8.66077)
+scale = Vector2(0.15, 0.15)
+
+[node name="SellLabel" type="Label" parent="UpgradeMenu/SellLabel"]
+offset_right = 71.0
+offset_bottom = 23.0
+text = "Sell:"
+
+[node name="LevelLabel" type="Node2D" parent="UpgradeMenu"]
+position = Vector2(-7.93333, -12.4444)
+scale = Vector2(0.175, 0.175)
+
+[node name="LevelLabel" type="Label" parent="UpgradeMenu/LevelLabel"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Level:"
+
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
@@ -502,5 +530,6 @@ autostart = true
 [connection signal="area_entered" from="Lizard/Pivot/RotateAround/Knife/KnifeHitbox" to="." method="_on_knife_hitbox_area_entered"]
 [connection signal="area_entered" from="Ogre/Pivot/RotateAround/BattleAxe/BattleAxeHitbox" to="." method="_on_battle_axe_hitbox_area_entered"]
 [connection signal="button_down" from="UpgradeMenu/Close/CloseButton" to="." method="_on_close_button_button_down"]
+[connection signal="button_down" from="UpgradeMenu/Upgrade/UpgradeButton" to="." method="_on_upgrade_button_button_down"]
 [connection signal="button_down" from="UpgradeMenu/Sell/SellButton" to="." method="_on_sell_button_button_down"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -62,7 +62,7 @@ func _input(event: InputEvent):
 
 
 func _on_skeleton_button_pressed() -> void:
-	if towerScript.towerClassStats[towerClass]["Cost"] > coins:
+	if towerScript.towerClassStats[towerClasses.SKELETON]["Cost"] > coins:
 		$Skeleton/SkeletonButton.release_focus()
 		return
 	placeToggle = !placeToggle
@@ -72,7 +72,7 @@ func _on_skeleton_button_pressed() -> void:
 
 
 func _on_lizard_button_pressed() -> void:
-	if towerScript.towerClassStats[towerClass]["Cost"] > coins:
+	if towerScript.towerClassStats[towerClasses.LIZARD]["Cost"] > coins:
 		$Lizard/LizardButton.release_focus()
 		return
 	placeToggle = !placeToggle
@@ -82,7 +82,7 @@ func _on_lizard_button_pressed() -> void:
 
 
 func _on_ogre_button_pressed() -> void:
-	if towerScript.towerClassStats[towerClass]["Cost"] > coins:
+	if towerScript.towerClassStats[towerClasses.OGRE]["Cost"] > coins:
 		$Ogre/OgreButton.release_focus()
 		return
 	placeToggle = !placeToggle

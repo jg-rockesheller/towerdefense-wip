@@ -10,7 +10,7 @@ var damage: int
 var canAttack: bool = true
 var cooldownTime: float
 var cost: int
-var level: int
+var level: int = 1
 var ui
 
 
@@ -63,6 +63,9 @@ func create(clickPos: Vector2, inpClass: TowerClasses, inpUI) -> void:
 
 
 func _process(_delta: float) -> void:
+	$UpgradeMenu/UpgradeLabel/UpgradeLabel.text = "Upgrade: -" + str(round(float(cost) * 0.25))
+	$UpgradeMenu/SellLabel/SellLabel.text = "Sell: +" + str(round(float(cost) * 0.75))
+	$UpgradeMenu/LevelLabel/LevelLabel.text = "Level: " + str(level)
 	if curEnemy == null: return
 	if canAttack and not curEnemy == null: attack()
 	if towerClass == TowerClasses.SKELETON:
@@ -152,3 +155,12 @@ func _on_close_button_button_down() -> void:
 func _on_sell_button_button_down() -> void:
 	ui.coins += round(float(cost) * 0.75)
 	queue_free()
+
+
+func _on_upgrade_button_button_down() -> void:
+	if round(float(cost) * 0.25) > ui.coins: return
+	level += 1
+	damage *= 1.1
+	cooldownTime /= 1.05
+	ui.coins -= round(float(cost) * 0.25)
+	cost += round(float(cost) * 0.25)
