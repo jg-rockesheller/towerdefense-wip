@@ -5,11 +5,13 @@ var towerScript = preload("res://scripts/tower.gd").new()
 @onready var towerScene = preload("res://scenes/tower.tscn")
 var placeToggle = false
 
+@export var coins = 50
 var activeButton
 var towerClasses = towerScript.TowerClasses
 var towerClass = towerClasses.SKELETON
 var selected = false
 var canPlace = false
+var curWave: int = 0
 
 
 func _physics_process(_delta: float):
@@ -37,7 +39,7 @@ func _input(event: InputEvent):
 	if placeToggle and canPlace and event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
 		var tower = towerScene.instantiate()
 		get_tree().get_root().add_child(tower)
-		tower.create(event.position, towerClass)
+		tower.create(event.position, towerClass, self)
 		tower.position = get_global_mouse_position()
 
 		activeButton.release_focus()
@@ -78,10 +80,11 @@ func _on_ogre_button_pressed() -> void:
 		return
 	placeToggle = !placeToggle
 	activeButton = $Ogre/OgreButton
-	towerClass = TowerClasses.OGRE
+	towerClass = towerClasses.OGRE
 	selected = true
-# section by jason ]]]
 
 
 func _on_play_button_pressed() -> void:
+	curWave += 1
 	get_parent().get_node("Randomized Path").waves()
+	$WaveLabel.text = "Waves: " + str(curWave)

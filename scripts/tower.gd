@@ -10,13 +10,15 @@ var damage: int
 var canAttack: bool = true
 var cooldownTime: float
 var cost: int
+var level: int
+var ui
 
 
 var towerClassStats = {
 	TowerClasses.SKELETON: {
 		"Detection Radius": 92,
 		"Bounding Radius":  10,
-		"Recharge Timer":   2,
+		"Recharge Timer":   1,
 		"Damage":           12.5,
 		"Cost":             30,
 	},
@@ -41,7 +43,8 @@ var enemyQueue = []
 var curEnemy
 
 
-func create(clickPos: Vector2, inpClass: TowerClasses) -> void:
+func create(clickPos: Vector2, inpClass: TowerClasses, inpUI) -> void:
+	ui = inpUI
 	self.position = clickPos
 
 	towerClass = inpClass
@@ -68,7 +71,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-			if "Enemy" not in area.name: return
+			if not area.is_in_group("enemy"): return
 			enemyQueue.append(area)
 			selectEnemy()
 
@@ -137,11 +140,15 @@ func _on_battle_axe_hitbox_area_entered(area: Area2D) -> void:
 	area.get_parent().hit(damage)
 
 
-func _input(inputEvent) -> void:
-	pass
-
-
 func _on_bounding_shape_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if not event.is_pressed(): return
 	$UpgradeMenu.visible = true
-	print("TODO: upgrading / removing tower")
+
+
+func _on_close_button_button_down() -> void:
+	$UpgradeMenu.visible = false
+
+
+func _on_sell_button_button_down() -> void:
+	ui.coins += round(float(cost) * 0.75)
+	queue_free()

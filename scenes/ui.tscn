@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://dnse1w3ouff6c"]
+[gd_scene load_steps=23 format=3 uid="uid://dnse1w3ouff6c"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_o4jko"]
 [ext_resource type="Texture2D" uid="uid://bnv4k16o00l40" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/skelet_idle_anim_f0.png" id="2_ljw1k"]
@@ -182,15 +182,35 @@ metadata/_edit_use_anchors_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SelectionCircle/Area2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(299, 200)
+self_modulate = Color(0.281187, 0.281187, 0.281187, 1)
+texture_filter = 1
+position = Vector2(278, 188)
 scale = Vector2(4.25, 3.6875)
 texture = ExtResource("18_adq2o")
 
 [node name="PlayButton" type="Button" parent="Sprite2D"]
+z_index = -1
 offset_left = -8.0
 offset_top = -8.0
 offset_right = 8.0
 offset_bottom = 8.0
+
+[node name="Node2D" type="Node2D" parent="Sprite2D"]
+position = Vector2(-4.94112, -6.23724)
+scale = Vector2(0.25, 0.25)
+
+[node name="Label" type="Label" parent="Sprite2D/Node2D"]
+offset_right = 43.0
+offset_bottom = 49.0
+text = "Next
+Wave"
+
+[node name="WaveLabel" type="Label" parent="."]
+offset_left = 360.0
+offset_top = 175.0
+offset_right = 420.0
+offset_bottom = 198.0
+text = "Wave: 0"
 
 [connection signal="pressed" from="Skeleton/SkeletonButton" to="." method="_on_skeleton_button_pressed"]
 [connection signal="pressed" from="Lizard/LizardButton" to="." method="_on_lizard_button_pressed"]

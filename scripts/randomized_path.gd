@@ -6,8 +6,8 @@ extends Node2D
 var pathVectors: Array[Vector2]
 var current_enemies = 4
 var total_enemies = current_enemies
-#var health_increment = x
 var is_wave = false
+var curWave = 1
 
 
 func randomSection(tl: Vector2, br: Vector2) -> void:
@@ -16,14 +16,14 @@ func randomSection(tl: Vector2, br: Vector2) -> void:
 	var rad: float = 75
 	for i in range(1, pointsNum):
 		var newPoint: Vector2 = Vector2(
-			randi_range(tl.x + (sectionLength * (i - 1)), tl.x + (sectionLength * i)),
-			randi_range(tl.y, br.y))
+			randf_range(tl.x + (sectionLength * (i - 1)), tl.x + (sectionLength * i)),
+			randf_range(tl.y, br.y))
 
 		for prevPoint in pathVectors.slice(len(pathVectors) - i, len(pathVectors) - 1):
 			if newPoint.y < prevPoint.y + rad and newPoint.y > prevPoint.y - rad:
 				newPoint = Vector2(
-					randi_range(tl.x + (sectionLength * (i - 1)), tl.x + (sectionLength * i)),
-					randi_range(tl.y, br.y))
+					randf_range(tl.x + (sectionLength * (i - 1)), tl.x + (sectionLength * i)),
+					randf_range(tl.y, br.y))
 
 		pathVectors.append(newPoint)
 
@@ -67,23 +67,19 @@ func _ready() -> void:
 		segment.b = pathVectors[i + 1]
 		new_shape.shape = segment
 
+
 func waves():
 	current_enemies = round((current_enemies + 1) * 1.05)
 	total_enemies = current_enemies
-	#health *= 2
 	is_wave = true
-
+	curWave += 1
 
 
 func _on_timer_timeout() -> void:
-<<<<<<< HEAD
-	var tempEnemy = enemyScene.instantiate()
-	$Path2D.add_child(tempEnemy)
-=======
 	if total_enemies != 0 and is_wave == true:
 		var tempEnemy = enemyScene.instantiate()
 		$Path2D.add_child(tempEnemy)
+		print(tempEnemy.health)
 		total_enemies -= 1
 	else:
 		is_wave = false
->>>>>>> 3bfe8bb4ddd518920fa08547c64f31e88ae0fae9
